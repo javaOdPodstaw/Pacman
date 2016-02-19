@@ -1,0 +1,75 @@
+SZKIELET EKRANU POCZĄTKOWEGO
+1. Kontener na nazwe gry
+2. Kontener/tabela na wyswietlanie wynikow.
+3. Input field do wprawadzania nazwy uzytkownika
+4. Przycisk Play.
+
+SZKIELET GRY HTML
+1. Kontener zewnętrzny + funkcja w JavaScriptcie centrująca ten kontener
+2. Bloki ograniczajace ruchy beda zwykłymi elementami html, kolory zostana dorzucone za pomocą elementow typowych dla SVG.
+3. Element gnieździsko dla potworkow na srodku planszy
+
+STRUKTURA PLIKOW
+Glowny folder -> pliki HMTL
+SubFolder "css" -> pliki CSS
+SubFolder 'scss" -> pliki Sass
+SubFolder "js" -> pliki JavaScript
+
+CENTROWANIE KONTENERA - JAVASCRIPT
+1. Funkcja ktora centruje kontener wzgledem okna
+
+
+GRA JAVASCRIPT
+1. Projekt będzie odpalany z funkcji anonimowej z przekazywaną tablicą assocjacyną zawieracjącą ustawienia gry.
+ Ustawienie gry mogą pozniej byc konfigurowane z poprzez zapytanie wysyłane do bazy. Dzięki temu zapobiegniemy ingerencji zewnątz w grę.
+ np. (function(){
+
+ })(configObject);
+
+2. Wewnątrz obiektu powinna na samym początku znajdować się walidacja ustawien. Jezeli jakies ustawienie nie zostało poprawnie sformułowane nalezy przypisac mu domyślną wartosc.
+np. configObject.color = configObject.color || "blue";
+
+      OBIEKT/FUNKCJA INICJUJACY GRE
+        Ma za zadanie stworzenie instancji obiektu PACMANA oraz kilku instancji obiektu stworow ktore beda gonic packmana w roznych odstepach czasu
+        oraz wypuszczanie tych stworow z ich gniazda w roznej kolejnosc.
+        Dodatkowo ten obiekt powinien wypełnic wszystkie mozliwe sciezki kropkami ktorymi bedzie zywil sie PACMAN
+          METODY:
+            1. tworzenie instancji obiektu PACMANa
+            2. tworzenie instacji stworow
+            3. wywyolujaca metode nr.2 w roznych odstepach czasu - tworzaca stworki w pewnych odstepach czasu
+            4. wywoływanie funkcji, ktora bedzie tworzyc kropki na wszystkich mozliwych sciezkach, do tego powinno zostac zbudowane pole globalne przechowywujace ilosc wygenerowanych kropek.
+
+               Wersja . Zjadanie kropek poprzez usuwanie z tablicy.
+               Polozenie wygenerowanych kropek powinno byc przechowywane w tablicy z zagniezdzonymi tablicami assocjacyjnymi dostępnej dla innych obiektow. Skladowane powinny byc koordynaty top oraz left. {top: 20, left:12}
+               np. [{top: 20, left:12}, {top: 2, left:112}]. Koordynaty podawane powinny byc wzgledem KONTERA => #container . Kazdy element kropki powinien miec klase css np. ".dot".
+               Mozna ewentualnie kazdemu elementowi a atrybucie "data" podac dane ktore bede wykorzystywane przy usuwaniu koordynatow z obiektu.
+
+
+      OBIEKT PACMANA
+        PACMAN bedzie SPRITEM, tj. bedzie dwoma obrazkami, ktore beda sie wyswietlaly w zaleznosci od tego czy PACMAN jest w trybie normalnym (zoltym), a moze w trybie ulepszonym (niebieskim),
+        wybor znacznika HTML jest dowony. Jezeli uzyjemy IMG to podmianiany bedzie artybut SRC za pomoca JavaScriptu przy zmianie koloru PACMANA.
+        Znacznik PACMANA powinien miec kwadrtowy wymiar o szerokosci odpowiadajacej szerokosci sciezki. Pozycja PACKMANa powinna byc przechowywana w polu dostepnym rowniez dla pozostalych obiektow,
+        pozycja bedzie aktualizowana przy ruchu PACMANa. Startowa pozycja PACKMANA bedzie zawsze jednakowa, tak jak w grze w linku umieszczonym na SLACKU.
+          METODY:
+            1. inicjowanie PACMANA przy rozpoczeciu gry, jego polozenia
+            2. poruszanie sie PACMANA poprzez naciskanie przyciskow klawiatury - eventListeners nasluchujacy okno
+            3. metoda obslugujaca poruszanie sie PACKMANa w okreslonym kierunku po dostepnej sciezce, poruszanie sie PACKMAN w stalym tempie do momentu nacisniecia klawisza strzalki w innym kierunku
+               jezeli gracz bedzie sie starał skrecic wczesniej niz to jest mozliwe PACMAN ma poruszac sie dalej we wczesniej ustalonym kierunku, ciagle dodawanie atrybutow left, top do elementu PACMANa
+               oraz pol z pozycja PACMANA.
+            4. metoda ktora bedzie bedzie pozwalala PACMANowi na zjadanie kropek, przy kazdym wywolaniu tej metody nastepowala bedzie decrementacja pola przechowywujacego ilosc wygenerowanych/pozostalych kropek na planszy.
+               Ta metoda powinna sprawdzac polozenie PACKMANA i wzgledem kropek. W momentcie gdy polozenie PACMANA bedzie takie samo jak kropki, sprawdzana bedzie tablica.
+                Jezeli w tablicy z polozeniami kropek znajduje sie taki punkt to nalezy go usunac z tablicy.
+
+         POLA ZALEŻNE:
+           1. Polozenie PACKMANA
+
+
+
+
+
+
+
+
+
+3. Funkcja ktora oblicza mozliwe sciezki drogi.
+4. Metoda ktora wypelnia sciezki kuleczkami ktore zjadane sa przez PACMANA
