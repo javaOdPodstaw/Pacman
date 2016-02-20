@@ -16,7 +16,7 @@ SubFolder 'scss" -> pliki Sass
 SubFolder "js" -> pliki JavaScript
 
 CENTROWANIE KONTENERA - JAVASCRIPT
-1. Funkcja ktora centruje kontener wzgledem okna
+1. Funkcja ktora centruje kontener wzgledem okna albo css
 
 
 GRA JAVASCRIPT
@@ -32,46 +32,46 @@ GRA JAVASCRIPT
 np. configObject.color = configObject.color || "blue";
 
       OBIEKT/FUNKCJA INICJUJACY GRE i tworzacy wisienki
-        Ma za zadanie stworzenie instancji obiektu PACMANA oraz kilku instancji obiektu stworow ktore beda gonic packmana w roznych odstepach czasu
-        oraz wypuszczanie tych stworow z ich gniazda w roznej kolejnosc.
+        Ma za zadanie stworzenie instancji obiektu PACMANA oraz kilku instancji obiektu stworow ktore beda gonic packmana w roznych odstepach czasu.
         Dodatkowo ten obiekt powinien wypełnic wszystkie mozliwe sciezki kropkami ktorymi bedzie zywil sie PACMAN.
         Posrod tych kropek powinny znajdowac sie rowniez kropki specjalne dzieki ktorym PACMAN jest w stanie poruszac sie szybciej i zjadac stwory.
 
           METODY:
             1. tworzenie instancji obiektu PACMANa
             2. tworzenie instacji stworow - 4 stwory
-            3. wywoływanie funkcji, ktora bedzie tworzyc kropki na wszystkich mozliwych sciezkach, do tego powinno zostac zbudowane pole globalne przechowywujace ilosc wygenerowanych kropek.
+            3. wywoływanie funkcji, ktora bedzie tworzyc kropki na wszystkich mozliwych sciezkach, do tego powinno zostac zbudowane pole globalne przechowywujace ilosc wygenerowanych kropek. - bedziemy uzywac funkcji JS do tego!
             4. uruchamianie gry, tj. odaplenie metody, ktora bedzie wywolywala dodanie event listenerow na poruszanie sie PACMANA. Wywolywana z pewnym opoznieniem.
                Dopiero po wywolaniu tej metody PACMAN zacznie sie poruszac.
-            5. metoda tworzaca kropki specjalne dajace PACMANowi specjalna moc
+            5. metoda tworzaca kropki specjalne dajace PACMANowi specjalna moc - zawsze w tym samym miejscu
 
                 Wersja. Zjadanie kropek poprzez usuwanie z tablicy.
                 Polozenie wygenerowanych kropek powinno byc przechowywane w tablicy z zagniezdzonymi tablicami assocjacyjnymi dostępnej dla innych obiektow. Skladowane powinny byc koordynaty top oraz left. {top: 20, left:12}
                 np. [{top: 20, left:12}, {top: 2, left:112}]. Koordynaty podawane powinny byc wzgledem KONTERA => #container . Kazdy element kropki powinien miec klase css np. ".dot".
                 Mozna ewentualnie kazdemu elementowi a atrybucie "data" podac dane ktore bede wykorzystywane przy usuwaniu koordynatow z obiektu. Proponowana funkcja array.reduce
-            6. metoda tworzaca wisienki, w okreslonych momentach gry (do ustalenia, np. po zjedzonej okreslonej liczbie kropek). W z elementu powinna byc mozliwosc
-                pobrania ilosci dodatkowych punktow zdobytych przez PACMANa
+            6. metoda tworzaca wisienki, w okreslonych momentach gry (po 70 i 170 kropkach zjedzonych). W z elementu powinna byc mozliwosc pobrania ilosci dodatkowych punktow zdobytych przez PACMANa - osoba ktora bedzie to robila moze ustalic albo issue w Redminie
 
       OBIEKT PACMANA
         PACMAN bedzie SPRITEM, tj. bedzie dwoma obrazkami, ktore beda sie wyswietlaly w zaleznosci od tego czy PACMAN jest w trybie normalnym (zoltym), a moze w trybie ulepszonym (niebieskim),
-        wybor znacznika HTML jest dowony. Jezeli uzyjemy IMG to podmianiany bedzie artybut SRC za pomoca JavaScriptu przy zmianie koloru PACMANA.
-        Znacznik PACMANA powinien miec kwadrtowy wymiar o szerokosci odpowiadajacej szerokosci sciezki. Pozycja PACKMANa powinna byc przechowywana w polu dostepnym rowniez dla pozostalych obiektow,
+        wybor znacznika HTML jest dowony. Sprite to backgroundImage i jego position.
+         Pozycja PACKMANa powinna byc przechowywana w polu dostepnym rowniez dla pozostalych obiektow,
         pozycja bedzie aktualizowana przy ruchu PACMANa. Startowa pozycja PACKMANA bedzie zawsze jednakowa, tak jak w grze w linku umieszczonym na SLACKU.
 
           METODY:
-            1. inicjowanie PACMANA przy rozpoczeciu gry, jego polozenie na planszy
+            1. inicjowanie PACMANA przy rozpoczeciu gry, jego polozenie na planszy - tworzenie w okreslonym miejscu na planszy
             2. poruszanie sie PACMANA poprzez naciskanie przyciskow klawiatury - eventListeners nasluchujacy okno
+               ciagle dodawanie wartosci polozenia do momentu natrafienia na przeszkode - trzeba badac czy kafelek w kierunku poruszania sie jest dostepny. Jezeli nie ma dostepnego kafelka to Pacman sie nie porusza. - bedzie jako setInterval - 
+               clearInterval gdy sie zderzymy ze sciana 
             3. metoda obslugujaca poruszanie sie PACKMANa w okreslonym kierunku po dostepnej sciezce, poruszanie sie PACKMAN w stalym tempie do momentu nacisniecia klawisza strzalki w innym kierunku
-               jezeli gracz bedzie sie starał skrecic wczesniej niz to jest mozliwe PACMAN ma poruszac sie dalej we wczesniej ustalonym kierunku, ciagle dodawanie atrybutow left, top do elementu PACMANa
+               ciagle dodawanie atrybutow left, top do elementu PACMANa
                oraz pol z pozycja PACMANA.
-            4. metoda ktora bedzie bedzie pozwalala PACMANowi na zjadanie kropek, przy kazdym wywolaniu tej metody nastepowala bedzie decrementacja pola przechowywujacego ilosc wygenerowanych/pozostalych kropek na planszy.
-               Ta metoda powinna sprawdzac polozenie PACKMANA i wzgledem kropek. W momentcie gdy polozenie PACMANA bedzie takie samo jak kropki, sprawdzana bedzie tablica.
+            4. metoda ktora bedzie bedzie pozwalala PACMANowi na zjadanie kropek, przy kazdym wywolaniu tej metody nastepowala bedzie decrementacja pola przechowywujacego ilosc wygenerowanych/pozostalych kropek na planszy oraz dodawana punkty.
+            - ta metoda bedzie wywolywana w metodzie nr.2 
                 Jezeli w tablicy z polozeniami kropek znajduje sie taki punkt to nalezy go usunac z tablicy.
-            5. metoda dajaca PACMANowi supermoce, tzw. bedzie mogl poruszac sie dwa razy szybciej oraz przy zderzeniu ze stworem bedzie mogl go zjesc.
+            5. metoda dajaca PACMANowi supermoce, tzw. bedzie mogl poruszac sie dwa razy szybciej oraz przy zderzeniu ze stworem bedzie mogl go zjesc. + dodac punkty + metoda nr. 2 bedzie sie wywolywana 2x szybciej
                 za zjedzonego stwora PACMAN dostaje dodatkowe punkty. Metoda ta powinna w setTimout usuwac dzialanie supermocy PACMANA
-            6. metoda ktora bedzie zabijala PACMANA gdy zderzy sie ze stworem. Ta sama metoda powinna odejmowac jedno zycie z pola skladujacego zycia PACMANa.
+            6. metoda ktora bedzie zabijala PACMANA gdy zderzy sie ze stworem. Ta sama metoda powinna odejmowac jedno zycie z pola skladujacego zycia PACMANa. - reset gry bez kropek.
                Ta sama metoda powinna zatrzymywac gre i resetowac ustawienie PACMANA oraz wszystki stworki, ale nie wypełniac na nowo sciezki kropkami.
-             7. metoda pozwalajaca PACMANowi na zjadanie wisienek
+            DUPA -> jako dodatek 7. metoda pozwalajaca PACMANowi na zjadanie wisienek
 
          POLA ZALEŻNE:
            1. Polozenie PACKMANA jako zmienna lokalna w funkcji anonimowej.
@@ -90,12 +90,12 @@ np. configObject.color = configObject.color || "blue";
 
 
             METODY:
-                1. Metoda tworzenia stwora wraz z jego inicjalna lokalizacja. Kazdy stwor ma inny kolor - niebieski, zolty, czerwony i rozowy.
-                2. Metoda ruchu stwora w uwiezieniu zanim rozpocznie sie gra, kazdy wypuszczony z gniazda stwor na poczatku idzie w lewo.
-                3. Metoda POGONI poruszania sie stwora po planszy, nalezaloby wyznaczyc algorytm poruszania sie w kierunku PACMANa,
+                1. Metoda tworzenia stwora wraz z jego inicjalna lokalizacja. Kazdy stwor ma inny kolor - niebieski, zolty, czerwony i rozowy. + miganie w trybie przerazenia
+
+                2. Metoda POGONI poruszania sie stwora po planszy, nalezaloby wyznaczyc algorytm poruszania sie w kierunku PACMANa,
                     tempo poruszania sie stworow jest wolniejsze od PACMANA. W algorytmie nalezy uzyc pozycji PACMANA jako celu poruszania sie stworow.
-                4. Metoda zabijania stwora, zabity stwor zamienia sie w same oczy i w lini prostej przelatuje do gniazda gdzie sie odradza
-                5. Metoda UCIEKANIA zachowania stworow, gdy PACMAN ma super moce, zaczynaja przed nim uciekac - algorytm poruszania sie.
+                3. Metoda zabijania stwora, zabity stwor zamienia sie w same oczy i w lini prostej przelatuje do gniazda gdzie sie odradza + do dorobienia czy zabity duch po odrodzeniu sie moze nas zabic czy nie + dodawanie punktow.
+                4. Metoda UCIEKANIA zachowania stworow, gdy PACMAN ma super moce, zaczynaja przed nim uciekac - algorytm poruszania sie.
                 W tym algorytmie stwory przypadkowo podejmuja decyzje na skrzyzowaniach ktora droge wybrac. Nie podazaja za zadnym celem. Uciekaja.
-                6. Metoda ROZPOSZONA poruszania sie stworow. Wtedy kiedy celem kazdego ze stworow porusza sie w kierunku swojego roku planszy.
+                5. Metoda ROZPOSZONA poruszania sie stworow. Wtedy kiedy celem kazdego ze stworow porusza sie w kierunku swojego roku planszy.
                 7. Metoda kontrolujaca tryby poruszania sie Stworo wedlug wypisanych w opisie obiektu cykli czasowych.
