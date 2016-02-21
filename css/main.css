@@ -3,12 +3,10 @@ html, body {
   height: 100%;
 }
 
-#container{
+#wrapper{
   margin: 0 auto;
-  width: 80%;
-  height: 80%;
-  max-width: 600px;
-  max-height  : 600px;
+  width: 448px;
+  height: 576px;
   border: 1px solid black;
-  
+
 }
