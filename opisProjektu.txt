@@ -59,13 +59,13 @@ np. configObject.color = configObject.color || "blue";
           METODY:
             1. inicjowanie PACMANA przy rozpoczeciu gry, jego polozenie na planszy - tworzenie w okreslonym miejscu na planszy
             2. poruszanie sie PACMANA poprzez naciskanie przyciskow klawiatury - eventListeners nasluchujacy okno
-               ciagle dodawanie wartosci polozenia do momentu natrafienia na przeszkode - trzeba badac czy kafelek w kierunku poruszania sie jest dostepny. Jezeli nie ma dostepnego kafelka to Pacman sie nie porusza. - bedzie jako setInterval - 
-               clearInterval gdy sie zderzymy ze sciana 
+               ciagle dodawanie wartosci polozenia do momentu natrafienia na przeszkode - trzeba badac czy kafelek w kierunku poruszania sie jest dostepny. Jezeli nie ma dostepnego kafelka to Pacman sie nie porusza. - bedzie jako setInterval -
+               clearInterval gdy sie zderzymy ze sciana
             3. metoda obslugujaca poruszanie sie PACKMANa w okreslonym kierunku po dostepnej sciezce, poruszanie sie PACKMAN w stalym tempie do momentu nacisniecia klawisza strzalki w innym kierunku
                ciagle dodawanie atrybutow left, top do elementu PACMANa
                oraz pol z pozycja PACMANA.
             4. metoda ktora bedzie bedzie pozwalala PACMANowi na zjadanie kropek, przy kazdym wywolaniu tej metody nastepowala bedzie decrementacja pola przechowywujacego ilosc wygenerowanych/pozostalych kropek na planszy oraz dodawana punkty.
-            - ta metoda bedzie wywolywana w metodzie nr.2 
+            - ta metoda bedzie wywolywana w metodzie nr.2
                 Jezeli w tablicy z polozeniami kropek znajduje sie taki punkt to nalezy go usunac z tablicy.
             5. metoda dajaca PACMANowi supermoce, tzw. bedzie mogl poruszac sie dwa razy szybciej oraz przy zderzeniu ze stworem bedzie mogl go zjesc. + dodac punkty + metoda nr. 2 bedzie sie wywolywana 2x szybciej
                 za zjedzonego stwora PACMAN dostaje dodatkowe punkty. Metoda ta powinna w setTimout usuwac dzialanie supermocy PACMANA
