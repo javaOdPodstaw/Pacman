@@ -8,5 +8,12 @@ html, body {
   width: 448px;
   height: 576px;
   border: 1px solid black;
+  position:relative;
 
+}
+#pacman{
+    position: absolute;
+    width: 18px;
+    height: 22px;
+    background: url('../img/pacman.png') 0 0;
 }
