@@ -15,5 +15,6 @@ html, body {
     position: absolute;
     width: 18px;
     height: 22px;
-    background: url('../img/pacman.png') 0 0;
+    background-image: url('../img/pacman.png');
+    background-position: 0 0;
 }
