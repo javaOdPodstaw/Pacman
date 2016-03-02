@@ -14,7 +14,25 @@ function startTimer() {
 function startTimer1() {
               setInterval(displayPreviousImage, 400);
 }
-
-
+	
 startTimer1();
+
 startTimer();
+
+
+
+function makeCenterTable(){
+	
+	document.getElementById("pacmanTitle").style.textAlign = "center";
+	document.getElementById("table").style.margin = "auto";
+	document.getElementById("table").style.padding = "5px";
+	document.getElementById("pacmanButton").style.textAlign = "center";
+	
+
+}
+
+makeCenterTable();
+
+
+
+
